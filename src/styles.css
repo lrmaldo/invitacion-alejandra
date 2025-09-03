@@ -1,0 +1,194 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 600ms ease-out forwards;
+  }
+  .animate-fade-in-up {
+    animation: fadeInUp 700ms cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .shadow-confirm {
+    box-shadow: 0 8px 30px rgba(99,102,241,0.24);
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px) }
+  to { opacity: 1; transform: translateY(0) }
+}
+
+/* Tipografía optativa: puedes importar Google Fonts desde index.html si quieres */
+
+/* Diseño adicional para la invitación */
+@layer components {
+  .card-accent {
+    background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,255,0.8));
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .ribbon {
+    position: absolute;
+    top: 1rem;
+    left: -1.25rem;
+    transform: rotate(-12deg);
+    background: linear-gradient(90deg,#7c3aed,#06b6d4);
+    color: white;
+    padding: 0.375rem 1.25rem;
+    border-radius: 0.375rem;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(15,23,42,0.12);
+    letter-spacing: 0.2px;
+  }
+
+  .host-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    color: #4c1d95;
+    line-height: 1.05;
+  }
+
+  .venue {
+    display: inline-block;
+    background: rgba(255,255,255,0.5);
+    padding: 0.25rem 0.5rem;
+    border-radius: 0.375rem;
+    border: 1px solid rgba(0,0,0,0.03);
+    font-size: 0.95rem;
+  }
+
+  .flourish {
+    width: 96px;
+    height: auto;
+    opacity: 0.9;
+    display: block;
+    margin: 0.5rem 0;
+  }
+
+  .map-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #065f46; /* verde oscuro */
+    font-weight: 600;
+  }
+
+  .map-link:hover {
+    text-decoration: underline;
+  }
+
+  .map-icon {
+    width: 18px;
+    height: 18px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  :root {
+    --rose-600: #be185d;
+    --rose-500: #ec4899;
+    --gold-400: #f59e0b;
+    --gold-500: #d97706;
+  }
+
+  .btn-rose {
+    background: var(--rose-600);
+    color: white;
+    box-shadow: 0 8px 24px rgba(190,24,93,0.18);
+  }
+
+  .btn-gold {
+    background: linear-gradient(90deg,var(--gold-400),var(--gold-500));
+    color: rgba(15,23,42,0.95);
+    box-shadow: 0 8px 24px rgba(217,119,6,0.12);
+  }
+
+  .flourish-svg {
+    width: 120px;
+    height: auto;
+    margin: 0.5rem 0;
+    display: block;
+    opacity: 0.95;
+  }
+
+  /* Hero and responsive layout */
+  .invitation-hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 1rem;
+    background-image: radial-gradient(circle at 10% 20%, rgba(236,72,153,0.04), transparent 20%), radial-gradient(circle at 90% 80%, rgba(217,119,6,0.03), transparent 25%);
+  }
+
+  .invitation-card {
+    width: 100%;
+    max-width: 52rem; /* 832px */
+    margin: 0 auto;
+  }
+
+  @media (min-width: 768px) {
+    .host-name { font-size: 1.8rem; }
+    .ribbon { top: 1.25rem; left: -1.5rem; }
+  }
+
+  @media (min-width: 1024px) {
+    .flourish-svg { width: 180px; }
+    .invitation-hero { padding: 4rem 2rem; }
+  }
+}
+
+/* Confetti / Fireworks effects */
+@layer components {
+  .fx-overlay {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 60;
+    top: 0; left: 0; width: 100%; height: 100%;
+  }
+
+  /* evitar overflow horizontal por elementos posicionados */
+  html, body {
+    overflow-x: hidden;
+  }
+
+  .invitation-hero {
+    overflow-x: hidden;
+  }
+
+  .fx-burst { position: absolute; transform: translate(-50%, -50%); }
+
+  .confetti-piece {
+    width: 8px; height: 14px; border-radius: 2px;
+    position: absolute; transform-origin: center;
+    animation: confetti-fall 1400ms cubic-bezier(.2,.8,.2,1) forwards;
+    will-change: transform, opacity;
+  }
+
+  @keyframes confetti-fall {
+    0% { transform: translateY(0) rotate(0deg) scale(1); opacity: 1 }
+    60% { opacity: 1 }
+    100% { transform: translateY(220px) rotate(520deg) scale(0.9); opacity: 0 }
+  }
+
+  .spark {
+    width: 6px; height: 6px; border-radius: 50%; position: absolute; opacity: 0.95;
+    animation: spark-pop 700ms cubic-bezier(.2,.8,.2,1) forwards;
+  }
+
+  @keyframes spark-pop {
+    0% { transform: scale(0.2); opacity: 1 }
+    60% { transform: scale(1.2); opacity: 1 }
+    100% { transform: scale(0.6); opacity: 0 }
+  }
+}
