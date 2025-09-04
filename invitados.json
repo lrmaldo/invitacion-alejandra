@@ -1,0 +1,6 @@
+[
+  { "id": 1, "nombre": "María López", "evento": "cena" },
+  { "id": 2, "nombre": "Pedro Torres", "evento": "fiesta" },
+  { "id": 3, "nombre": "Fulana", "evento": "fiesta" },
+  { "id": 4, "nombre": "Sutano", "evento": "cena" }
+]
